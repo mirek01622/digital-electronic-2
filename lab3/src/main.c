@@ -35,11 +35,16 @@ int main(void)
 {
     // Set pins where LEDs are connected as output
     GPIO_mode_output(&DDRB, LED_GREEN);
+    GPIO_mode_output(&DDRB, LED_RED);
+
 
     // Configuration of 16-bit Timer/Counter1 for LED blinking
     // Set the overflow prescaler to 262 ms and enable interrupt
     TIM1_OVF_262MS
     TIM1_OVF_ENABLE
+
+    TIM0_OVF_4MS
+    TIM0_OVF_ENABLE
 
     // Enables interrupts by setting the global interrupt mask
     sei();
@@ -64,6 +69,7 @@ int main(void)
 ISR(TIMER1_OVF_vect)
 {
     PORTB = PORTB ^ (1<<LED_GREEN);
+    TCNT1 = 6000;
 }
 
 ISR(TIMER0_OVF_vect)
