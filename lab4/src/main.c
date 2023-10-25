@@ -44,6 +44,7 @@
  **********************************************************************/
 int main(void)
 {
+  
     // Initialize display
     lcd_init(LCD_DISP_ON_CURSOR);
 
